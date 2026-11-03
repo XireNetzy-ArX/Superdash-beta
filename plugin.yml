@@ -1,0 +1,17 @@
+name: SuperDash
+version: '1.3'
+main: com.example.superdash.SuperDash
+api-version: '1.21'
+description: SuperDash sederhana untuk server Paper
+commands:
+  superdash:
+    description: Toggle SuperDash atau reload config
+    usage: /superdash [on|off|reload]
+    aliases: [sd, sdash]
+permissions:
+  superdash.use:
+    description: Boleh memakai SuperDash
+    default: true
+  superdash.admin:
+    description: Boleh reload config
+    default: op

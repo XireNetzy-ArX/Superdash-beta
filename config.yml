@@ -1,0 +1,80 @@
+# SuperDash - konfigurasi
+# Setelah ngubah file ini, ketik /sd reload di game (butuh izin superdash.admin).
+
+# Apakah pemain baru langsung bisa SuperDash tanpa perlu ngetik /sd on
+enable-by-default: true
+
+jump:
+  # Dorongan ke atas (0.8 - 1.2 enak dipakai)
+  height: 0.9
+  # Dorongan ke arah pandangan pemain (0 = lompat lurus ke atas)
+  forward: 0.6
+  # Jeda antar dash, dalam milidetik (1000 = 1 detik).
+  # Hitungannya mulai dari saat pemain dash. Dash berikutnya tetap baru bisa
+  # setelah pemain mendarat DAN cooldown habis (nggak bisa dash berantai di udara).
+  cooldown: 1000
+  # true = cooldown baru mulai hitung SETELAH mendarat (perilaku lama, jadinya
+  # lama di udara + cooldown). false = hitung dari saat dash.
+  cooldown-from-landing: false
+  # Biar nggak kena damage jatuh habis dash
+  prevent-fall-damage: true
+  # Daftar world tempat SuperDash aktif. Kosongkan untuk semua world.
+  worlds: []
+
+# Tampilan pas pemain mencoba dash tapi masih cooldown
+cooldown-feedback:
+  # Tampilkan di action bar (tulisan di atas hotbar). Ini yang paling enak dilihat.
+  actionbar: true
+  # Kirim juga ke chat? Biasanya nggak perlu, bikin chat penuh.
+  chat: false
+  # Bar kecil pengganti {bar}: panjang & karakternya bisa diganti
+  bar-length: 10
+  bar-filled: "■"
+  bar-empty: "■"
+  # Bunyi "tuk" pelan pas dash ditolak
+  sound:
+    enabled: true
+    type: block.note_block.bass
+    volume: 0.6
+    pitch: 0.7
+  # Kasih tahu pemain pas cooldown-nya sudah habis. Default mati
+  # supaya nggak berisik buat yang sering lompat.
+  ready-ping:
+    enabled: false
+    sound:
+      enabled: true
+      type: entity.experience_orb.pickup
+      volume: 0.5
+      pitch: 1.4
+
+effects:
+  particle:
+    enabled: true
+    type: CLOUD
+    count: 20
+    offset: 0.3
+    speed: 0.05
+  sound:
+    enabled: true
+    # Nama sound dengan format namespaced (lihat Minecraft wiki)
+    type: entity.bat.takeoff
+    volume: 1.0
+    pitch: 1.2
+
+# Pesan boleh pakai kode warna &. Kalau isinya list, yang tampil dipilih acak.
+# Placeholder cooldown: {time} = sisa detik, {bar} = bar progres.
+messages:
+  cooldown:
+    - "&7Sabar dulu, &e{time}s &7lagi &8[{bar}&8]"
+    - "&7Kakinya masih pegel nih... &e{time}s &8[{bar}&8]"
+    - "&7Bentar, atur napas dulu &8[{bar}&8] &e{time}s"
+    - "&7Belum bisa dash, tunggu &e{time}s &7ya &8[{bar}&8]"
+  ready:
+    - "&a✔ Udah siap, dash lagi!"
+    - "&a✔ Kaki udah enakan, gas dash lagi!"
+  enabled: "&aSuperDash udah &lnyala&a. Tekan spasi dua kali di udara!"
+  disabled: "&7SuperDash &lmati&7. Nyalain lagi pakai &e/sd on&7."
+  reloaded: "&aSip, konfigurasi SuperDash sudah dimuat ulang."
+  no-permission: "&cWaduh, kamu belum punya izin buat itu."
+  players-only: "&cPerintah ini cuma bisa dipakai pemain, bukan lewat console."
+  usage: "&eCoba: &f/sd [on|off|reload]"
